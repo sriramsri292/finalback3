@@ -18,7 +18,7 @@ const UserSchema = new Schema({
   userName: {
     type: String,
     unique: true,
-    required: true,
+   
   },
   followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],

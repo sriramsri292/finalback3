@@ -93,8 +93,9 @@ AuthRouter.post("/signin", async (req, res, next) => {
 
 
 
-AuthRouter.post("/signup", (req, res, next) => {
+  AuthRouter.post("/signup", (req, res, next) => {
     const data = req.body;
+    console.log(data);
     bcrypt.hash(req.body.password, saltRounds).then(function (hash) 
     {
       if (hash) {
@@ -104,17 +105,19 @@ AuthRouter.post("/signup", (req, res, next) => {
             if (result && result._id) {
               return res.status(200).json({
                 message: "User Created Successfully!!",
-                success:true,
+                success: true,
                 data: result,
               });
             }
           })
           .catch((err) => {
+            console.error("Error creating user:", err);
             return res.status(401).json({
-              message: "Alas! Error Creating User!!",
-              error: err,
+                message: "Alas! Error Creating User!!",
+                error: err.message,  // Log the error message
             });
-          });
+        });
+        
       } else {
         return res.status(400).json({
           message: "Password is not in required format",
