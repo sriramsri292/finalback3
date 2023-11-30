@@ -2,6 +2,8 @@ const UserRouter = require("express").Router();
 const UserModel = require("../models/users.model");
 var mongoose = require("mongoose");
 const multer = require('multer');
+const axios = require('axios');
+
 
 UserRouter.get('/',(req,res,next)=>
 {
@@ -393,7 +395,6 @@ UserRouter.post('/upload', upload.fields([{ name: 'profileImage', maxCount: 1 },
 });
 
 
-  
 
 
 
